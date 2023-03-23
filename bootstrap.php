@@ -18,6 +18,7 @@ $containerBindings($containerBuilder);
 
 $container = $containerBuilder->build();
 
+
 // $container = require __DIR__.'/app/dependencies.php';
 AppFactory::setContainer($container);
 return AppFactory::create(null, $container);

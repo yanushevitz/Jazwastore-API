@@ -7,8 +7,9 @@ use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
 
 $app = require __DIR__.'/../bootstrap.php';
+$middleware = require __DIR__."/../app/middleware.php";
 
-$app->addErrorMiddleware(true, true, false);
+$middleware($app);
 
 $app->get('/' , [MainController::class, 'index']);
 
