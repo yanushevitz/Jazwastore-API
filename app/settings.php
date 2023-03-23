@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+namespace App;
 use App\Application\Settings\Settings;
 use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;

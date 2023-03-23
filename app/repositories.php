@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+namespace App;
 
 use App\Domain\User\UserRepository;
 use App\Infrastructure\Persistence\User\InMemoryUserRepository;
