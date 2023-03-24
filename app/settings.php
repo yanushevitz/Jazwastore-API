@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 namespace App;
-use App\Application\Settings\Settings;
-use App\Application\Settings\SettingsInterface;
+use Src\Application\Settings\Settings;
+use Src\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
 use Monolog\Logger;
 
@@ -14,7 +14,7 @@ return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         SettingsInterface::class => function () {
             return new Settings([
-                'displayErrorDetails' => true, // Should be set to false in production
+                'displayErrorDetails' => true, 
                 'logError'            => false,
                 'logErrorDetails'     => false,
                 'logger' => [

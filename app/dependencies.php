@@ -14,6 +14,9 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Doctrine\DBAL\Connection;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 return function (ContainerBuilder $containerBuilder) {
 
@@ -47,6 +50,11 @@ return function (ContainerBuilder $containerBuilder) {
                 isDevMode: true,
             );
             return new EntityManager($c->get(Connection::class), $config);
+        },
+        Serializer::class => function(ContainerInterface $c){
+            $encoders = [new JsonEncoder()];
+            $normalizers = [new ObjectNormalizer()];
+            return new Serializer($normalizers, $encoders);
         }
         
     ]);

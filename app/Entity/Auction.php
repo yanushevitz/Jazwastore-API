@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Entity;
+
 use App\Enum\AuctionStatus;
-use App\Enum\Subject;
 use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
