@@ -7,5 +7,6 @@ $middleware = require __DIR__."/../app/middleware.php";
 $middleware($app);
 
 $app->get('/' , [MainController::class, 'index']);
+$app->post('/create' , [MainController::class, 'create']);
 
 $app->run();

@@ -4,6 +4,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
@@ -23,6 +24,15 @@ class User{
     #[Column]
     private string $facebook;
 
+    #[Column]
+    private int $number;
+
+	#[Column(nullable: true)]
+	#[OneToMany(Auction::class, 'auctions')]
+	private array $auctions;
+
+	#[Column]
+	private string $auth0;
     
 
 
@@ -87,6 +97,54 @@ class User{
 	 */
 	public function setFacebook(string $facebook): self {
 		$this->facebook = $facebook;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getNumber(): int {
+		return $this->number;
+	}
+	
+	/**
+	 * @param int $number 
+	 * @return self
+	 */
+	public function setNumber(int $number): self {
+		$this->number = $number;
+		return $this;
+	}
+
+	/**
+	 * @return Auction
+	 */
+	public function getAuction(): array {
+		return $this->auctions;
+	}
+	
+	/**
+	 * @param Auction $auction 
+	 * @return self
+	 */
+	public function setAuction(Auction $auction): self {
+		$this->auctions += $auction;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAuth0(): string {
+		return $this->auth0;
+	}
+	
+	/**
+	 * @param string $auth0 
+	 * @return self
+	 */
+	public function setAuth0(string $auth0): self {
+		$this->auth0 = $auth0;
 		return $this;
 	}
 }

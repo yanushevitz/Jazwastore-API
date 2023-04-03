@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use App\Enum\AuctionStatus;
 use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
-
-
 
 #[Entity]
 #[Table("auctions")]
@@ -29,12 +27,9 @@ class Auction{
 
     #[Column]
     private int $status;
-
-    // #[Column]
-    // private User $user;
     
-    // #[Column]
-    // private Subject $subject;
+	#[Column]
+	private string $subject;
 
     #[Column]
     private DateTime $date;
@@ -42,6 +37,12 @@ class Auction{
     #[Column]
     private int $class;
 
+	#[Column]
+	private string $img;
+
+	#[Column]
+	#[ManyToOne(targetEntity: User::class, inversedBy: 'auction')]
+	private int $user;
 
 	/**
 	 * @return int
@@ -108,21 +109,6 @@ class Auction{
 	}
 
 	/**
-	 * @return AuctionStatus
-	 */
-	public function getStatus(): int {
-		return $this->status;
-	}
-	
-	/**
-	 * @param int $status 
-	 * @return self
-	 */
-	public function setStatus(AuctionStatus $status): self {
-		$this->status = $status;
-		return $this;
-	}
-	/**
 	 * @return DateTime
 	 */
 	public function getDate(): DateTime {
@@ -151,6 +137,70 @@ class Auction{
 	 */
 	public function setClass(int $class): self {
 		$this->class = $class;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubject(): string {
+		return $this->subject;
+	}
+	
+	/**
+	 * @param string $subject 
+	 * @return self
+	 */
+	public function setSubject(string $subject): self {
+		$this->subject = $subject;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getImg(): string {
+		return $this->img;
+	}
+	
+	/**
+	 * @param string $img 
+	 * @return self
+	 */
+	public function setImg(string $img): self {
+		$this->img = $img;
+		return $this;
+	}
+
+	/**
+	 * @return User
+	 */
+	public function getUser(): int {
+		return $this->user;
+	}
+	
+	/**
+	 * @param User $user 
+	 * @return self
+	 */
+	public function setUser(User $user): self {
+		$this->user = $user->getId();
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getStatus(): int {
+		return $this->status;
+	}
+	
+	/**
+	 * @param int $status 
+	 * @return self
+	 */
+	public function setStatus(int $status): self {
+		$this->status = $status;
 		return $this;
 	}
 }

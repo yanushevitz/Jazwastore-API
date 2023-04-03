@@ -18,3 +18,4 @@ cache.properties
 composer.phar
 composer.lock
 .env
+/public/images/*

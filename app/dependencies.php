@@ -17,6 +17,7 @@ use Doctrine\DBAL\Connection;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Auth0\SDK\Auth0;
 
 return function (ContainerBuilder $containerBuilder) {
 
@@ -46,7 +47,7 @@ return function (ContainerBuilder $containerBuilder) {
         },
         EntityManager::class => function(ContainerInterface $c){
             $config = ORMSetup::createAttributeMetadataConfiguration(
-                paths: array(__DIR__."/src"),
+                paths: array(__DIR__."/Entity"),
                 isDevMode: true,
             );
             return new EntityManager($c->get(Connection::class), $config);
@@ -55,6 +56,14 @@ return function (ContainerBuilder $containerBuilder) {
             $encoders = [new JsonEncoder()];
             $normalizers = [new ObjectNormalizer()];
             return new Serializer($normalizers, $encoders);
+        },
+        Auth0::class => function(ContainerInterface $c){
+            return new Auth0([
+                'domain' => $_ENV['AUTH0_DOMAIN'],
+                'clientId' => $_ENV['AUTH0_CLIENT_ID'],
+                'clientSecret' => $_ENV['AUTH0_CLIENT_SECRET'],
+                'cookieSecret' => $_ENV['AUTH0_COOKIE_SECRET']
+            ]);
         }
         
     ]);
