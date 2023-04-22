@@ -19,3 +19,4 @@ composer.phar
 composer.lock
 .env
 /public/images/*
+/public/uploaded/*

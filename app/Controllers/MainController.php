@@ -2,14 +2,16 @@
 
 namespace App\Controllers;
 
-use App\Entity\Auction;
-use App\Entity\User;
+use App\Services\FileService;
 use Auth0\SDK\Auth0;
 use Doctrine\ORM\EntityManager;
+use Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use App\Services\AuctionService;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Serializer\Serializer;
+use Throwable;
 
 class MainController
 {
@@ -17,7 +19,7 @@ class MainController
      */
     public function __construct(
         private readonly AuctionService $auctionService,
-        private readonly Serializer $serializer,
+        private readonly FileService $fileService,
         private readonly Auth0 $auth0,
         private readonly EntityManager $em
     ) {
@@ -33,12 +35,11 @@ class MainController
     }
     public function create(RequestInterface $request, ResponseInterface $response)
     {
-        $payload = $request->getBody();
-        var_dump($payload);
-        // $response->getBody()->write(json_encode(['a' => 'b']));`
+        $response = $response->withHeader("Content-Type", "application/json");
+        $auctionData = $request->getParsedBody();
+        $file = $request->getUploadedFiles()['img'];
+        $auction = $this->auctionService->createAuction($auctionData, $file);
+        $response->getBody()->write($auction);
         return $response;
     }
-
-
-    
 }

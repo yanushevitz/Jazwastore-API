@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace App;
 
 use Slim\App;
-// TODO make use of this file to configure routes in separate file
+use App\Controllers\MainController;
 
 return function (App $app) {
-    // $app->get('/', function(RequestInterface $request, ResponseInterface $response){echo "hi"; return $response;});
+    $app->get('/' , [MainController::class, 'index']);
+    $app->post('/create' , [MainController::class, 'create']);
 };
