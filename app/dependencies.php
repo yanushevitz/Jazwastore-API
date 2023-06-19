@@ -61,7 +61,8 @@ return function (ContainerBuilder $containerBuilder) {
             return new Serializer($normalizers, $encoders);
         },
         SettingsInterface::class => function(){
-            return new Settings([]);
+            $settings = require "settings.php";
+            return settings($containerBuilder);
         },
         Auth0::class => function(ContainerInterface $c){
             return new Auth0([
