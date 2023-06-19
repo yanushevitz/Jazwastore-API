@@ -3,7 +3,7 @@
 declare(strict_types=1);
 namespace App;
 
-use App\Application\Settings\SettingsInterface;
+// use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
@@ -14,10 +14,13 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Doctrine\DBAL\Connection;
+use Src\Application\Settings\Settings;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Auth0\SDK\Auth0;
+// use Src\Application\Settings\Settings;
+use Src\Application\Settings\SettingsInterface;
 
 return function (ContainerBuilder $containerBuilder) {
 
@@ -56,6 +59,9 @@ return function (ContainerBuilder $containerBuilder) {
             $encoders = [new JsonEncoder()];
             $normalizers = [new ObjectNormalizer()];
             return new Serializer($normalizers, $encoders);
+        },
+        SettingsInterface::class => function(){
+            return new Settings([]);
         },
         Auth0::class => function(ContainerInterface $c){
             return new Auth0([
