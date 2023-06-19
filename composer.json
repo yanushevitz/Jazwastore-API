@@ -27,7 +27,7 @@
         "auth0/auth0-php": "^8.6",
         "doctrine/dbal": "^3.6",
         "doctrine/migrations": "^3.6",
-        "doctrine/orm": "^2.14",
+        "doctrine/orm": "^2.15",
         "monolog/monolog": "^2.9",
         "nyholm/psr7": "^1.8",
         "php-di/php-di": "^6.4",
