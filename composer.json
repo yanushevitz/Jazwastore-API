@@ -27,6 +27,9 @@
         "auth0/auth0-php": "^8.6",
         "doctrine/dbal": "^3.6",
         "doctrine/migrations": "^3.6",
+        "doctrine/orm": "^2.14",
+        "monolog/monolog": "^3.3",
+=======
         "doctrine/orm": "^2.15",
         "monolog/monolog": "^2.9",
 
