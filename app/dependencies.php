@@ -19,7 +19,6 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Auth0\SDK\Auth0;
-// use Src\Application\Settings\Settings;
 use Src\Application\Settings\SettingsInterface;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -60,7 +59,7 @@ return function (ContainerBuilder $containerBuilder) {
             $normalizers = [new ObjectNormalizer()];
             return new Serializer($normalizers, $encoders);
         },
-        SettingsInterface::class => function($containerBuilder){
+        SettingsInterface::class => function(ContainerBuilder $containerBuilder){
             $settings = require "settings.php";
             return $settings($containerBuilder);
         },
