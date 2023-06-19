@@ -60,7 +60,7 @@ return function (ContainerBuilder $containerBuilder) {
             $normalizers = [new ObjectNormalizer()];
             return new Serializer($normalizers, $encoders);
         },
-        SettingsInterface::class => function(){
+        SettingsInterface::class => function($containerBuilder){
             $settings = require "settings.php";
             return $settings($containerBuilder);
         },
