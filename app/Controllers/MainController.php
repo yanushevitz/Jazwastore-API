@@ -35,10 +35,12 @@ class MainController
     }
     public function create(RequestInterface $request, ResponseInterface $response)
     {
-        $response = $response->withHeader("Content-Type", "application/json");
         $auctionData = $request->getParsedBody();
         $file = $request->getUploadedFiles()['img'];
         $auction = $this->auctionService->createAuction($auctionData, $file);
+        $response->withHeader("Content-Type", "application/json");
+        // $response->withHeader("Access-Control-Allow-Origin", "*");
+        header("Access-Control-Allow-Origin: *");
         $response->getBody()->write($auction);
         return $response;
     }
