@@ -41,7 +41,7 @@
 =======
         "symfony/http-client": "^6.3",
         "symfony/property-access": "^6.2",
-        "symfony/serializer": "^6.2",
+        "symfony/serializer": "^6.3",
         "vlucas/phpdotenv": "^5.5"
     },
     "require-dev": {
