@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
-        "auth0/auth0-php": "^8.4",
+        "auth0/auth0-php": "^8.6",
         "doctrine/dbal": "^3.6",
         "doctrine/migrations": "^3.6",
         "doctrine/orm": "^2.14",
