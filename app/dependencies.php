@@ -62,7 +62,7 @@ return function (ContainerBuilder $containerBuilder) {
         },
         SettingsInterface::class => function(){
             $settings = require "settings.php";
-            return settings($containerBuilder);
+            return $settings($containerBuilder);
         },
         Auth0::class => function(ContainerInterface $c){
             return new Auth0([
